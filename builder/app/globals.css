@@ -1,0 +1,4 @@
+/* Reaproveita exatamente os tokens/tema do renderer */
+@import "../../src/app/globals.css";
+@source "../../src";
+@source "..";

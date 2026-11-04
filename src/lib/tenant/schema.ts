@@ -201,6 +201,9 @@ export const TenantSchema = z.object({
   }),
 });
 
+/** Variante estrita (usada ao salvar pelo builder): seção inválida é erro, não warning. */
+export const TenantSchemaStrict = TenantSchema.extend({ sections: z.array(SectionSchema) });
+
 export type Tenant = z.infer<typeof TenantSchema>;
 export type Theme = z.infer<typeof ThemeSchema>;
 

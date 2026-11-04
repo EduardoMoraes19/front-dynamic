@@ -6,9 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "dev:builder": "next dev builder --port 3001",
+    "build:builder": "next build builder"
   },
   "dependencies": {
+    "@puckeditor/core": "^0.24.0",
     "lucide-react": "^1.68.0",
     "next": "16.4.5",
     "react": "19.3.0",

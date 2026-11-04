@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -20,11 +20,6 @@ export async function generateMetadata({ params }: PageProps<"/sites/[slug]">): 
     description: tenant.seo.description,
     openGraph: { title: tenant.seo.title, description: tenant.seo.description, siteName: tenant.name },
   };
-}
-
-export async function generateViewport({ params }: PageProps<"/sites/[slug]">): Promise<Viewport> {
-  const tenant = await getTenant((await params).slug);
-  return { themeColor: tenant?.theme.primary };
 }
 
 export default async function TenantPage({ params }: PageProps<"/sites/[slug]">) {
