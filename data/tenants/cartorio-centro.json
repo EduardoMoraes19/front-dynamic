@@ -1,0 +1,132 @@
+{
+  "slug": "cartorio-centro",
+  "name": "1º Tabelionato de Notas e Protesto de Vila Aurora",
+  "shortName": "1º Tabelionato de Vila Aurora",
+  "slogan": "Segurança jurídica com tradição desde 1952.",
+  "kind": "notas",
+  "theme": {
+    "primary": "#13294B",
+    "onPrimary": "#F7F4EC",
+    "accent": "#B8892B",
+    "background": "#F7F4EC",
+    "surface": "#FFFDF8",
+    "text": "#1C1B19",
+    "muted": "#5E5A52",
+    "headingFont": "serif",
+    "bodyFont": "sans",
+    "radius": "sm",
+    "monogram": "1ºT"
+  },
+  "seo": {
+    "title": "1º Tabelionato de Vila Aurora — Escrituras, Procurações e Protesto",
+    "description": "Escrituras, procurações, reconhecimento de firma, autenticações e protesto de títulos no centro de Vila Aurora."
+  },
+  "sections": [
+    {
+      "type": "hero",
+      "variant": "split",
+      "data": {
+        "eyebrow": "Desde 1952 no coração de Vila Aurora",
+        "subtitle": "Escrituras, procurações e autenticações com a fé pública de quem atende três gerações de famílias e empresas da cidade.",
+        "cta": { "label": "Agendar atendimento", "href": "#contato" },
+        "secondaryCta": { "label": "Ver serviços", "href": "#servicos" },
+        "highlights": ["Atendimento com hora marcada", "e-Notariado: assinatura digital", "Estacionamento conveniado"]
+      }
+    },
+    {
+      "type": "stats",
+      "data": {
+        "items": [
+          { "value": "72", "label": "anos de história" },
+          { "value": "+180 mil", "label": "atos lavrados" },
+          { "value": "15 min", "label": "tempo médio de espera" },
+          { "value": "4,9★", "label": "avaliação dos clientes" }
+        ]
+      }
+    },
+    {
+      "type": "services",
+      "id": "servicos",
+      "navLabel": "Serviços",
+      "variant": "grid",
+      "data": {
+        "title": "Atos notariais",
+        "intro": "Tudo o que você precisa para dar segurança aos seus negócios e à sua família.",
+        "items": [
+          { "icon": "house", "title": "Escritura de compra e venda", "description": "Transmissão de imóveis com análise documental completa e cálculo de ITBI." },
+          { "icon": "signature", "title": "Procurações", "description": "Públicas, para fins previdenciários, bancários ou imobiliários — inclusive por videoconferência.", "tag": "Online" },
+          { "icon": "pen", "title": "Reconhecimento de firma", "description": "Por semelhança ou autenticidade, com cadastro de cartão de assinatura." },
+          { "icon": "file-check", "title": "Autenticação de cópias", "description": "Cópias autenticadas na hora, inclusive digitais (e-Not Autentica)." },
+          { "icon": "scroll", "title": "Inventário e partilha", "description": "Inventário extrajudicial rápido, sem processo judicial, quando há consenso." },
+          { "icon": "gavel", "title": "Protesto de títulos", "description": "Apresentação e cancelamento de protestos, certidões e cartas de anuência." }
+        ]
+      }
+    },
+    {
+      "type": "checklist",
+      "id": "documentos",
+      "navLabel": "O que levar",
+      "data": {
+        "title": "O que levar no dia",
+        "intro": "Selecione o serviço e confira os documentos necessários para não perder a viagem.",
+        "items": [
+          { "service": "Procuração", "documents": ["RG e CPF originais do outorgante", "Dados completos do procurador (nome, CPF, endereço)", "Certidão de casamento, se casado"] },
+          { "service": "Escritura de imóvel", "documents": ["Matrícula atualizada (até 30 dias)", "Guia de ITBI quitada", "RG, CPF e certidão de estado civil das partes", "Certidões negativas do vendedor"] },
+          { "service": "Inventário", "documents": ["Certidão de óbito", "Documentos de todos os herdeiros", "Documentos dos bens", "Advogado constituído"] }
+        ]
+      }
+    },
+    {
+      "type": "openingHours",
+      "id": "horarios",
+      "navLabel": "Horários",
+      "data": {
+        "schedule": [
+          { "label": "Segunda a sexta", "days": [1, 2, 3, 4, 5], "open": "09:00", "close": "17:00" },
+          { "label": "Sábado (plantão)", "days": [6], "open": "09:00", "close": "12:00" }
+        ],
+        "note": "Escrituras somente com agendamento prévio."
+      }
+    },
+    {
+      "type": "location",
+      "data": {
+        "address": "Rua XV de Novembro, 210 — Centro",
+        "city": "Vila Aurora — SP",
+        "lat": -23.5489,
+        "lng": -46.6388,
+        "reference": "Em frente à Praça da Matriz."
+      }
+    },
+    {
+      "type": "faq",
+      "id": "duvidas",
+      "navLabel": "Dúvidas",
+      "data": {
+        "items": [
+          { "q": "Posso fazer uma procuração sem sair de casa?", "a": "Sim. Pelo e-Notariado a procuração é lavrada por videoconferência e assinada com certificado digital notarizado, gratuito." },
+          { "q": "Preciso de advogado para inventário em cartório?", "a": "Sim, a presença de advogado é obrigatória por lei, mas o processo costuma levar semanas em vez de anos." },
+          { "q": "Quanto custa uma escritura?", "a": "Os emolumentos seguem a tabela oficial do Estado e variam conforme o valor do imóvel. Peça um orçamento pelo WhatsApp." }
+        ]
+      }
+    },
+    {
+      "type": "contact",
+      "id": "contato",
+      "navLabel": "Contato",
+      "data": {
+        "title": "Agende seu atendimento",
+        "text": "Nossa equipe responde em até 1 hora útil.",
+        "phone": "(11) 3100-1952",
+        "whatsapp": "5511931001952",
+        "email": "atendimento@1tabelionatoaurora.com.br"
+      }
+    }
+  ],
+  "legal": {
+    "cns": "12.345-6",
+    "officer": "Dra. Helena Bragança Ferraz",
+    "officerTitle": "Tabeliã Titular",
+    "cnpj": "12.345.678/0001-90"
+  }
+}

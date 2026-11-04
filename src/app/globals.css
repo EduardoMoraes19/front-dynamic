@@ -1,26 +1,53 @@
 @import "tailwindcss";
 
+/*
+ * Tokens de marca: cada tenant define --t-* (ver ThemeScope).
+ * Os componentes só usam bg-primary, text-ink, rounded-brand, font-heading...
+ * e nunca conhecem o tenant.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --t-primary: #1f2937;
+  --t-on-primary: #ffffff;
+  --t-accent: #6b7280;
+  --t-bg: #fafafa;
+  --t-surface: #ffffff;
+  --t-ink: #111827;
+  --t-muted: #6b7280;
+  --t-radius: 0.5rem;
+  --t-font-heading: var(--font-grotesk);
+  --t-font-body: var(--font-grotesk);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--t-primary);
+  --color-on-primary: var(--t-on-primary);
+  --color-accent: var(--t-accent);
+  --color-bg: var(--t-bg);
+  --color-surface: var(--t-surface);
+  --color-ink: var(--t-ink);
+  --color-muted: var(--t-muted);
+  --radius-brand: var(--t-radius);
+  --font-heading: var(--t-font-heading);
+  --font-body: var(--t-font-body);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--t-bg);
+  color: var(--t-ink);
+  font-family: var(--t-font-body), system-ui, sans-serif;
+}
+
+/* Textura sutil de papel/guilhoché usada em heros */
+.guilloche {
+  background-image:
+    repeating-radial-gradient(circle at 0 0, transparent 0, transparent 14px, color-mix(in oklab, var(--t-accent) 12%, transparent) 15px, transparent 16px),
+    repeating-radial-gradient(circle at 100% 100%, transparent 0, transparent 14px, color-mix(in oklab, var(--t-primary) 10%, transparent) 15px, transparent 16px);
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
 }

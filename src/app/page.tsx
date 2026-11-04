@@ -1,69 +1,67 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import { Seal, monogramOf } from "@/components/brand/Seal";
+import { themeToCssVars } from "@/components/theme/ThemeScope";
+import { HostLink } from "@/components/layout/CurrentHost";
+import { listTenants } from "@/lib/tenant";
+import { KIND_LABEL } from "@/lib/tenant/schema";
+import domains from "../../data/domains.json";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: "POC — Cartórios multi-tenant",
+  description: "Um único frontend, uma landing page por domínio.",
+};
+
+/** Índice da POC: exibido no host raiz (localhost), lista os tenants para demo. */
+export default async function Home() {
+  const tenants = await listTenants();
+  const aliasOf = (slug: string) =>
+    Object.entries(domains as Record<string, string>)
+      .filter(([d, s]) => s === slug && d.endsWith(".localhost"))
+      .map(([d]) => d);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
+      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted">POC · Front dinâmico por domínio</p>
+      <h1 className="mt-3 font-heading text-4xl font-bold tracking-tight md:text-5xl">
+        Um frontend, um cartório por domínio.
+      </h1>
+      <p className="mt-4 max-w-2xl text-lg text-muted">
+        O <code>proxy.ts</code> lê o <code>Host</code> da requisição, encontra o tenant e renderiza a landing page a partir
+        do JSON em <code>data/tenants/</code>. Abra cada domínio abaixo:
+      </p>
+
+      <ul className="mt-12 grid gap-6 md:grid-cols-3">
+        {tenants.map((t) => {
+          const hosts = [...aliasOf(t.slug), `${t.slug}.localhost`];
+          return (
+            <li
+              key={t.slug}
+              style={themeToCssVars(t.theme)}
+              className="flex flex-col overflow-hidden rounded-brand border border-ink/10 bg-bg text-ink"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+              <div className="flex items-center gap-3 bg-primary p-5 text-on-primary">
+                <Seal name={t.name} monogram={monogramOf(t.name, t.theme.monogram)} size={52} />
+                <div className="min-w-0">
+                  <p className="truncate font-heading font-semibold">{t.shortName ?? t.name}</p>
+                  <p className="text-xs opacity-80">{KIND_LABEL[t.kind]}</p>
+                </div>
+              </div>
+              <div className="flex flex-1 flex-col gap-3 p-5 font-body text-sm">
+                <p className="text-muted">{t.slogan}</p>
+                <p className="text-xs text-muted">{t.sections.length} seções · fonte {t.theme.headingFont}/{t.theme.bodyFont}</p>
+                <div className="mt-auto flex flex-col gap-1 pt-2">
+                  {hosts.map((h) => (
+                    <HostLink key={h} host={h} className="font-medium text-primary underline underline-offset-4" />
+                  ))}
+                  <a href={`/?tenant=${t.slug}`} className="text-muted underline underline-offset-4">
+                    ?tenant={t.slug}
+                  </a>
+                </div>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </main>
   );
 }
