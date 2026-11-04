@@ -5,10 +5,16 @@ import nextTs from "eslint-config-next/typescript";
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
+  {
+    // Permite descartar campos na desestruturação com prefixo "_" (ex.: { id: _id, ...rest }).
+    rules: {
+      "@typescript-eslint/no-unused-vars": ["warn", { varsIgnorePattern: "^_", argsIgnorePattern: "^_" }],
+    },
+  },
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:
-    ".next/**",
+    "**/.next/**",
     "out/**",
     "build/**",
     "next-env.d.ts",

@@ -77,6 +77,66 @@ npm run start   # serve o build
 npm run lint    # ESLint
 ```
 
+## Page Builder (Puck) — porta 3001
+
+O diretório `builder/` é um **segundo app Next.js** que simula o "hub": um editor visual drag-and-drop feito com o [Puck](https://github.com/puckeditor/puck) (MIT). Ele roda em paralelo ao renderer:
+
+```bash
+npm run dev            # renderer  → http://localhost:3000  (sites dos cartórios)
+npm run dev:builder    # builder   → http://localhost:3001  (hub / editor)
+```
+
+| URL | O que faz |
+| --- | --- |
+| http://localhost:3001 | Lista de sites + formulário **"Novo cartório"** (cria o site a partir de um template) |
+| http://localhost:3001/edit/cartorio-centro | Editor visual do site |
+
+### O que dá para fazer no editor
+
+- **Arrastar blocos** (Hero, Aviso, Números, Serviços, Checklist, FAQ, Horários, Localização, Contato) para a página, **reordenar**, **duplicar** e **remover**.
+- **Clicar num bloco** e editar seus campos no painel lateral (textos, layout/variante, listas, CTAs, ícones, dias da semana...).
+- Editar a **página** (nada selecionado): nome, slogan, tipo de serventia, **tema** (color pickers, fontes, arredondamento, monograma), SEO e dados legais.
+- **Preview responsivo** (celular / tablet / desktop) e desfazer/refazer.
+- **Publish** → valida, grava o JSON e o site atualiza no domínio do cartório na hora.
+
+### Como funciona
+
+```
+ Builder :3001 (Puck)                                   Renderer :3000
+ ┌───────────────────────────────┐                     ┌──────────────────────────┐
+ │ canvas renderiza OS MESMOS    │                     │                          │
+ │ componentes de src/components │                     │ centro.localhost:3000    │
+ │ (WYSIWYG real)                │                     │                          │
+ │                               │  1. PUT /api/sites  │                          │
+ │ [Publish] ────────────────────┼──▶ Puck Data → JSON │                          │
+ │                               │    zod (estrito)    │                          │
+ │                               │    grava data/*.json│                          │
+ │                               │  2. POST /api/revalidate (webhook) ──────────▶ │
+ │                               │                     │ revalidateTag(tenant:x)  │
+ └───────────────────────────────┘                     └──────────────────────────┘
+```
+
+- **Mesmos componentes e mesmo schema**: o builder importa `src/components/sections/*` e `src/lib/tenant/schema.ts` (alias `@/` aponta para `../src`). O que aparece no canvas é exatamente o que será publicado; não há duas implementações.
+- **Tradução de formatos** (`builder/lib/mapping.ts`): JSON do tenant ⇄ `Data` do Puck. O `id` da seção vira `anchor` (o Puck reserva `props.id`) e listas de texto viram listas de objetos `{ text }`.
+- **Validação**: no canvas, um bloco com campo obrigatório vazio mostra um aviso no lugar da seção. Ao publicar, o servidor valida com `TenantSchemaStrict` e devolve os erros legíveis no toast.
+- **Webhook**: `src/app/api/revalidate/route.ts` (protegido por `x-revalidate-secret`, variável `REVALIDATE_SECRET`, padrão `dev-secret` em dev) invalida o cache do site publicado.
+- **"Banco"**: nesta POC o builder grava direto em `data/tenants/*.json`. No hub real, isso vira o banco (com rascunho/publicado e histórico) e o renderer lê pela API.
+
+Arquivos principais:
+
+```
+builder/
+  next.config.ts            # turbopack.root = raiz do repo (compartilha src/ e node_modules)
+  app/page.tsx              # lista de sites + "Novo cartório"
+  app/edit/[slug]/Editor.tsx# <Puck> + publish + toast
+  app/api/sites/route.ts    # POST: cria site a partir de template
+  app/api/sites/[slug]/route.ts # PUT: publica (valida, grava, webhook)
+  lib/puck-config.tsx       # blocos, campos e root (tema/cabeçalho/rodapé)
+  lib/fields.tsx            # campos customizados: color picker, dias da semana
+  lib/mapping.ts            # JSON do tenant ⇄ Data do Puck
+  lib/store.ts              # leitura/gravação dos JSONs + webhook
+```
+
 ## Arquitetura
 
 ```

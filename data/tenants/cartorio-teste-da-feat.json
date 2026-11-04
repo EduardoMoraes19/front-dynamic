@@ -1,0 +1,220 @@
+{
+  "slug": "cartorio-teste-da-feat",
+  "name": "cartorio teste da feat ",
+  "shortName": "cartorio teste da feat ",
+  "slogan": "A matrícula do seu patrimônio, guardada com precisão.",
+  "kind": "imoveis",
+  "theme": {
+    "primary": "#D4B483",
+    "onPrimary": "#0E0F12",
+    "accent": "#8FA6B8",
+    "background": "#0E0F12",
+    "surface": "#17191F",
+    "text": "#ECE8E1",
+    "muted": "#9A968F",
+    "headingFont": "serif",
+    "bodyFont": "mono",
+    "radius": "none",
+    "monogram": "RI"
+  },
+  "seo": {
+    "title": "cartorio teste da feat ",
+    "description": "Registro de escrituras, averbações, matrículas e certidões de imóveis da Zona Norte."
+  },
+  "sections": [
+    {
+      "type": "hero",
+      "variant": "monumental",
+      "data": {
+        "eyebrow": "2º Ofício · Comarca da Zona Norte",
+        "title": "Propriedade é registro.",
+        "subtitle": "Quem não registra não é dono. Registramos escrituras, averbamos construções e emitimos certidões de matrícula com rigor técnico.",
+        "cta": {
+          "label": "Solicitar certidão de matrícula",
+          "href": "#contato"
+        },
+        "highlights": [
+          "Prazo legal: até 10 dias úteis",
+          "Protocolo eletrônico ONR",
+          "Pesquisa de bens"
+        ]
+      }
+    },
+    {
+      "id": "documentos",
+      "navLabel": "Documentos",
+      "type": "checklist",
+      "data": {
+        "title": "Antes de protocolar",
+        "intro": "A maior causa de nota devolutiva é documento faltando. Confira:",
+        "items": [
+          {
+            "service": "Registro de escritura",
+            "documents": [
+              "Traslado da escritura pública",
+              "Guia de ITBI quitada",
+              "Certidão de valor venal",
+              "Requerimento assinado"
+            ]
+          },
+          {
+            "service": "Averbação de construção",
+            "documents": [
+              "Habite-se",
+              "CND do INSS da obra",
+              "Planta aprovada",
+              "ART/RRT do responsável técnico"
+            ]
+          },
+          {
+            "service": "Cancelamento de hipoteca",
+            "documents": [
+              "Termo de quitação do credor",
+              "Requerimento com firma reconhecida"
+            ]
+          },
+          {
+            "service": "Usucapião extrajudicial",
+            "documents": [
+              "Ata notarial",
+              "Planta e memorial descritivo",
+              "Certidões dos distribuidores",
+              "Advogado constituído"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "servicos",
+      "navLabel": "Serviços",
+      "type": "services",
+      "variant": "grid",
+      "data": {
+        "title": "Atribuições",
+        "items": [
+          {
+            "icon": "building",
+            "title": "Registro de títulos",
+            "description": "Compra e venda, doação, permuta, alienação fiduciária e formais de partilha."
+          },
+          {
+            "icon": "landmark",
+            "title": "Averbações",
+            "description": "Construções, demolições, casamentos, divórcios e alterações cadastrais."
+          },
+          {
+            "icon": "file-text",
+            "title": "Certidões de matrícula",
+            "description": "Inteiro teor, ônus reais e ações reipersecutórias — em papel ou digital.",
+            "tag": "Digital"
+          },
+          {
+            "icon": "key",
+            "title": "Usucapião extrajudicial",
+            "description": "Reconhecimento de posse sem processo judicial."
+          },
+          {
+            "icon": "scale",
+            "title": "Retificação de área",
+            "description": "Correção de medidas e confrontações com anuência dos vizinhos."
+          },
+          {
+            "icon": "shield",
+            "title": "Pesquisa de bens",
+            "description": "Localização de imóveis em nome de pessoas físicas e jurídicas."
+          }
+        ]
+      }
+    },
+    {
+      "type": "stats",
+      "data": {
+        "items": [
+          {
+            "value": "214.807",
+            "label": "matrículas abertas"
+          },
+          {
+            "value": "1938",
+            "label": "ano de instalação"
+          },
+          {
+            "value": "98%",
+            "label": "títulos sem exigência no prazo"
+          }
+        ]
+      }
+    },
+    {
+      "id": "duvidas",
+      "navLabel": "Dúvidas",
+      "type": "faq",
+      "data": {
+        "title": "Dúvidas frequentes",
+        "items": [
+          {
+            "q": "Qual a diferença entre escritura e registro?",
+            "a": "A escritura é lavrada no Tabelionato de Notas e formaliza o negócio. Só o registro na matrícula, feito aqui, transfere a propriedade."
+          },
+          {
+            "q": "Recebi uma nota devolutiva. E agora?",
+            "a": "Ela lista as exigências a cumprir. Basta reapresentar o título com os documentos dentro do prazo de validade do protocolo (20 dias)."
+          },
+          {
+            "q": "Como saber em qual cartório meu imóvel está matriculado?",
+            "a": "Pela circunscrição do endereço. Consulte a ferramenta do ONR ou ligue para nós."
+          }
+        ]
+      }
+    },
+    {
+      "id": "contato",
+      "navLabel": "Contato",
+      "type": "contact",
+      "data": {
+        "title": "Protocolo e atendimento",
+        "phone": "(11) 2222-1938",
+        "email": "protocolo@rinorte.com.br"
+      }
+    },
+    {
+      "type": "location",
+      "data": {
+        "title": "Onde estamos",
+        "address": "Av. Engenheiro Caetano Álvares, 4400 — Sala 12",
+        "city": "Vila Aurora — SP",
+        "lat": -23.4782,
+        "lng": -46.6703
+      }
+    },
+    {
+      "type": "openingHours",
+      "data": {
+        "title": "Expediente",
+        "timezone": "America/Sao_Paulo",
+        "schedule": [
+          {
+            "label": "Segunda a sexta",
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "open": "09:00",
+            "close": "16:00"
+          }
+        ],
+        "note": "Protocolo encerra às 16h em ponto."
+      }
+    }
+  ],
+  "legal": {
+    "cns": "13.579-1",
+    "officer": "Dr. Augusto Leme Prado",
+    "officerTitle": "Oficial Registrador",
+    "cnpj": "98.765.432/0001-10"
+  }
+}
